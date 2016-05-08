@@ -262,7 +262,7 @@ class Arr
      */
     public static function get($array, $key, $default = null)
     {
-        if (! static::accessible($array)) {
+        if (! $array) {
             return value($default);
         }
 

@@ -273,7 +273,7 @@ class PostgresGrammar extends Grammar
     {
         $path = explode('->', $value);
 
-        $field = $this->wrapValue(array_shift($path));
+        $field = array_shift($path);
 
         $wrappedPath = $this->wrapJsonPathAttributes($path);
 

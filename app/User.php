@@ -11,9 +11,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-	public $table = 'anggota';
     protected $fillable = [
-        'NRP',  'passwd',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -22,6 +21,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'passwd', 'remember_token',
+        'password', 'remember_token',
     ];
 }
