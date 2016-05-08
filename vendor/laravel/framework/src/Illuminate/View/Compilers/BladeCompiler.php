@@ -625,18 +625,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileCan($expression)
     {
-        return "<?php if (app('Illuminate\\Contracts\\Auth\\Access\\Gate')->check{$expression}): ?>";
-    }
-
-    /**
-     * Compile the else-can statements into valid PHP.
-     *
-     * @param  string  $expression
-     * @return string
-     */
-    protected function compileElsecan($expression)
-    {
-        return "<?php elseif (app('Illuminate\\Contracts\\Auth\\Access\\Gate')->check{$expression}): ?>";
+        return "<?php if (Gate::check{$expression}): ?>";
     }
 
     /**
@@ -647,18 +636,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileCannot($expression)
     {
-        return "<?php if (app('Illuminate\\Contracts\\Auth\\Access\\Gate')->denies{$expression}): ?>";
-    }
-
-    /**
-     * Compile the else-can statements into valid PHP.
-     *
-     * @param  string  $expression
-     * @return string
-     */
-    protected function compileElsecannot($expression)
-    {
-        return "<?php elseif (app('Illuminate\\Contracts\\Auth\\Access\\Gate')->denies{$expression}): ?>";
+        return "<?php if (Gate::denies{$expression}): ?>";
     }
 
     /**
@@ -694,17 +672,6 @@ class BladeCompiler extends Compiler implements CompilerInterface
         $empty = '$__empty_'.$this->forelseCounter--;
 
         return "<?php endforeach; if ({$empty}): ?>";
-    }
-
-    /**
-     * Compile the has section statements into valid PHP.
-     *
-     * @param  string  $expression
-     * @return string
-     */
-    protected function compileHasSection($expression)
-    {
-        return "<?php if (! empty(trim(\$__env->yieldContent{$expression}))): ?>";
     }
 
     /**
@@ -879,7 +846,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileStack($expression)
     {
-        return "<?php echo \$__env->yieldPushContent{$expression}; ?>";
+        return "<?php echo \$__env->yieldContent{$expression}; ?>";
     }
 
     /**
@@ -890,7 +857,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compilePush($expression)
     {
-        return "<?php \$__env->startPush{$expression}; ?>";
+        return "<?php \$__env->startSection{$expression}; ?>";
     }
 
     /**
@@ -901,7 +868,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileEndpush($expression)
     {
-        return '<?php $__env->stopPush(); ?>';
+        return '<?php $__env->appendSection(); ?>';
     }
 
     /**

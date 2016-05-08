@@ -59,7 +59,7 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
-     * Compile a column addition table command.
+     * Compile a create table command.
      *
      * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
      * @param  \Illuminate\Support\Fluent  $command
@@ -540,28 +540,6 @@ class SqlServerGrammar extends Grammar
     protected function typeUuid(Fluent $column)
     {
         return 'uniqueidentifier';
-    }
-
-    /**
-     * Create the column definition for an IP address type.
-     *
-     * @param  \Illuminate\Support\Fluent  $column
-     * @return string
-     */
-    protected function typeIpAddress(Fluent $column)
-    {
-        return 'nvarchar(45)';
-    }
-
-    /**
-     * Create the column definition for a MAC address type.
-     *
-     * @param  \Illuminate\Support\Fluent  $column
-     * @return string
-     */
-    protected function typeMacAddress(Fluent $column)
-    {
-        return 'nvarchar(17)';
     }
 
     /**
